@@ -1,14 +1,6 @@
 #include<iostream>
 using namespace std;
 
-long int count5(int num)
-{   long int count=0;
-    while (num%5 ==0)
-          {count++;
-           num/=5;}
-    return count;    
-}
-
 int main()
 {
     long int T;
