@@ -1,0 +1,25 @@
+#leetcode 1
+
+class Solution {
+public:
+    int hammingWeight(uint32_t n) {
+      int count=0;
+        while(n)
+          { if(n&1)
+             count++;
+            n=n>>1;
+          }
+        return count;
+        
+      
+         
+         
+    }
+};
+
+Hamming weight of a string is basically the number of bits that are different than the 0 symbol used .
+ex- 11000000011
+hamming weight =4
+
+Hamming distance between two strings of equal length is the number of positions at which the corresponding symbols are different.Heavily used in string comaprison like -motif finding.
+
