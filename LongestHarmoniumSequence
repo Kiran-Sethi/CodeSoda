@@ -1,0 +1,38 @@
+//leet code problem 2
+
+class Solution {
+public:
+    int findLHS(vector<int>& nums) {
+        int min,maxlen=0,diff=0,j,len=1;
+        int n=nums.size();
+        sort(nums.begin(), nums.end());
+       
+        for(int i=0;i<n;i++)
+        {  min=nums[i];
+           j=i+1;
+           
+           while(j<n && (nums[j]-min)<=1)
+            {            
+               len++;                 
+               if(diff!=1)
+               {diff=nums[j]-min;} 
+               j++; 
+                           
+            } 
+         
+           cout<<len<<"\n";
+           if(maxlen<len && diff==1)
+               maxlen=len;
+           
+           if(diff!=1)
+               len=0;
+//            resetting
+           diff=0;
+           len=1;
+            
+        } 
+               
+        
+        return maxlen;
+    }
+};
