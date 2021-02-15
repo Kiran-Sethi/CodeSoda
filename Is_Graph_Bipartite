@@ -1,0 +1,43 @@
+class Solution {
+public:
+    bool isBipartite(vector<vector<int>>& graph) {
+        queue<int> q;
+        vector<int> v;
+        int prev;
+        for(int j=0;j<graph.size();j++)
+            v.push_back(-1);
+        vector<int> n;
+        for(int j=0;j<graph.size();j++){
+            //v.push_back(-1);
+        if(v[j]==-1){
+        q.push(j);      
+        prev = 0;
+        v[j] = prev;
+        while(!q.empty()) {
+            //prev = 1-prev;
+            int val = q.front();
+            q.pop();
+            n = graph[val];
+            /*if(n.size() == 0){
+                cout<<val;
+                if(q.empty() && val+1 < graph.size()){
+                    q.push(val+1);
+                    v[val+1] = prev;
+                    continue;
+                }
+            }*/
+            for(int i=0;i<n.size();i++) {
+                if(v[n[i]] == v[val])
+                    return false;
+                if(v[n[i]] == -1){
+                    v[n[i]] = 1-v[val];
+                    q.push(n[i]); 
+                }
+            }
+            //prev = 1-prev;
+        }
+        }
+        }
+        return true;
+    }
+};
