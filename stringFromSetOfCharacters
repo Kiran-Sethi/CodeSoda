@@ -1,0 +1,27 @@
+'''
+Write a simple enumeration algorithm, either recursive or iterative, that
+prints all k-mers consisting of 5 letters {-, A, C, G, T}. Compare the time of
+both recursive and iterative approaches and mention the time complexity of
+the algorithm
+'''
+
+a=['A','C','G','T','-']
+def kmers(k):
+    if k-1==0:
+        return a
+    else:
+        a1=kmers(k-1)
+        a2=kmers(1)
+        i=0
+        j=0
+        a3=[]
+        for i in range(len(a1)):
+            for j in range(len(a2)):
+                str=""
+                str=str+a1[i]+a2[j]
+                a3.append(str)
+    return a3
+    
+    
+b=kmers(2)
+print(b)
