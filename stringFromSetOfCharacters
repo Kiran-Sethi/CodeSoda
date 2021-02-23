@@ -3,6 +3,8 @@ Write a simple enumeration algorithm, either recursive or iterative, that
 prints all k-mers consisting of 5 letters {-, A, C, G, T}. Compare the time of
 both recursive and iterative approaches and mention the time complexity of
 the algorithm
+
+Although this approach is O(5^l) , also the space memory becoz of list is of 5^l .thus it crashes for large numbers
 '''
 
 a=['A','C','G','T','-']
