@@ -1,0 +1,9 @@
+'''updated time complexity from O(NlogN) to 0(N) using hashset implemented by set() in python'''
+ def distributeCandies(self, candyType: List[int]) -> int:
+        hash_set=set()
+        for i in candyType:
+            hash_set.add(i)
+        unique=len(hash_set)
+        n=int(len(candyType)/2)
+        return min(n,unique)
+        
