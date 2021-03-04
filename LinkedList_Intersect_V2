@@ -1,0 +1,28 @@
+'''
+4   5
+3   4
+2   3
+1   2
+5   1 (when o exchange with the starting point of other)
+4   4  
+
+and hence we arrived at the shortest one among them see...making them both coming at same position finally
+'''
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+       pa=headA
+       pb=headB
+        
+       while pa!=pb:
+        pa=headB if pa is None else pa.next
+        pb=headA if pb is None else pb.next
+        
+       return pa  
+        
