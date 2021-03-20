@@ -1,0 +1,15 @@
+def fractional_knapsack(price,weight,n):
+    ratio=[]
+    profit=0
+    for i in range(len(price)):
+        ratio.append(price[i]/weight[i])
+    while n>0:
+        maxm_ratio=max(ratio)
+        maxm_index=ratio.index(maxm_ratio)
+        frac_qty = weight[maxm_index] if weight[maxm_index] <= n else n
+        n-=frac_qty
+        profit+=ratio[maxm_index]*frac_qty
+        ratio[maxm_index]=-1
+    return profit
+
+print(fractional_knapsack(price=[20,30,40],weight=[5,3,4],n=10))
