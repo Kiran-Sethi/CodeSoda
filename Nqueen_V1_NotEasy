@@ -1,0 +1,93 @@
+### N queen problem - place n queens across n*n board such that no two queen attack each other
+
+## we know queen can move diagonally ,and either along the rows
+
+'''
+base case if all the queens are placed
+we will place queens column by column .
+for each column , we will iterate over all the rows .
+we will mark the safe cell as 1 , and iterate further until we get to know it yields the soln or not.
+if it yield the soln -return true
+else return false - and mark it as 0 //(backtrack) where queens cant be placed and we will try other rows
+we will do it for rows in the particular column , and if no soln then we will return false to trigger backtracking...iska matlab pehle k columns bhare hai wo koi solution galat hai
+'''
+
+
+
+
+def safe(board,row,col):
+    '''
+    assuming that the left columns are filled i.e 0 to col-1 filled
+    therefore attacking can happen only from left , we will check left row ,
+    left diag up and down
+    '''
+
+    N=len(board)
+    for i in range(col):
+     ##left row
+     if board[row][i]==1:
+      return False
+
+    ## upper diagonal
+    for i,j in zip(range(row,-1,-1),range(col,-1,-1)):  ## will consider i,j together
+      if board[i][j]==1:
+          return False
+
+    ## lower diagonal
+    for i,j in zip(range(row,N,1),range(col,-1,-1)):  ## will consider i,j together
+      if board[i][j]==1:
+          return False
+
+    return True
+
+
+
+
+def solveNqueen(board,col):
+    N=len(board)
+    '''
+     if all the queens are placed,base case.
+    '''
+    if col>=N:
+        return True
+
+    for row in range(N): ## iterating over all the rows for this column col
+      if  safe(board,row,col):
+          '''
+          placing the queen on board
+          '''
+
+          board[row][col]=1
+          '''
+          recur to place rest of the queens
+          '''
+
+
+          if solveNqueen(board,col+1)==True:
+              return True
+          '''
+            If placing queen in board[i][col
+            doesn't lead to a solution, then
+            queen from board[i][col]
+          '''
+
+          board[row][col] = 0 ## backtracking
+          '''
+           if the queen can not be placed in any row in
+           this colum col then return false
+          '''
+
+    return False   ## it means previous  column queens have been wrongly placed and I am not able to
+                   ## place in any row of this particular column
+
+def main():
+    N=int(input("enter the size of the board"))
+    board=[[0 for i in range(N) ]for j in range(N)]
+
+    solveNqueen(board,0)
+    for i in range(N):
+        for j in range(N):
+            print(board[i][j],end=" ")
+        print()
+
+main()
