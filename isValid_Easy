@@ -1,0 +1,38 @@
+class Solution:        
+   
+    def isNumber(self,inp):
+        status=True
+        inp=inp.lower()
+        if 'e' in inp:
+            txt=inp.split('e')
+            if len(txt)!=2 or txt[0]==''or txt[1]=='':
+                 return False
+            try:
+              txt[1]=int(txt[1])
+            except:
+               return False
+
+            if '.' in txt[0]:
+                try:
+                    txt[0] = float(txt[0])
+                except:
+                    return False
+            else:
+                try:
+                 txt[0] = int(txt[0])
+                except:
+                 return False
+
+        else:
+            if '.' in inp:
+                try:
+                    inp= float(inp)
+                except:
+                    return False
+            else:
+                try:
+                    inp = int(inp)
+                except:
+                    return False
+
+        return status        
