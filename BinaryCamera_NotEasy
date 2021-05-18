@@ -1,0 +1,39 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def minCameraCover(self, node) :
+        self.camera = 0
+        self.covered = {None}
+
+        def dfs(node, parent):
+            ## we need to avoid cameras on leaf; we will start from bottom
+            if node !=  None:
+                dfs(node.left,node)
+                dfs(node.right,node)
+
+                ## if parent and has not covered yet ,then put camera on it
+                if parent is None and node not in self.covered:
+                    self.camera+=1
+                    self.covered.add(node)
+                    self.covered.add(node.left)
+                    self.covered.add(node.right)
+                    self.covered.add(parent)
+                    # print(node.val)
+
+                ### adding to the parent whose any child is not coverd, thus covering start from the immediate above level of the leaf nodes
+                if node.left  not in self.covered  or node.right not in self.covered:
+                    self.camera+=1
+                    self.covered.add(node)
+                    self.covered.add(node.left)
+                    self.covered.add(node.right)
+                    self.covered.add(parent)
+                    # print(node.val)
+
+
+
+        dfs(node,None)
+        return self.camera
